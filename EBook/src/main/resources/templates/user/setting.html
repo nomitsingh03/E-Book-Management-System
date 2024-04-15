@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::Layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Setting</title>
+</head>
+<body>
+	<section class="container  text-center mt-3">
+		<div class="row mt-5 g-2">
+			<div th:if="${user.role=='ROLE_ADMIN'}" class="col-4 setting-col ">
+				<a class="text-decoration-none" th:href="@{/all_BookDetails}"><div class="card border-primary">
+					<div class="card-body text-center ">
+						<div class="text-primary ">
+							<i class="fas fa-book-open fa-3x"></i>
+						</div>
+						<h4>View All Books</h4>
+					</div>
+				</div></a>
+			</div>
+			<div th:if="${user.role=='ROLE_ADMIN'}" class="col-4 setting-col ">
+				<a class="text-decoration-none" th:href="@{/all_New_BookDetails}"><div class="card border-primary">
+					<div class="card-body text-center ">
+						<div class="text-primary ">
+							<i class="fas fa-book-open fa-3x"></i>
+						</div>
+						<h4>New Books</h4>
+					</div>
+				</div></a>
+			</div>
+			<div th:if="${user.role=='ROLE_ADMIN'}" class="col-4 setting-col">
+				<a class="text-decoration-none" th:href="@{/admin/addBook}"><div class="card border-primary">
+					<div class="card-body text-center ">
+						<div class="text-primary ">
+							<i class="fas fa-book-open fa-3x"></i>
+						</div>
+						<h4>Add Book</h4>
+					</div>
+				</div></a>
+			</div>
+			<div th:if="${user.role=='ROLE_ADMIN'}" class="col-4 setting-col">
+				<a class="text-decoration-none"  th:href="@{/admin/order-history}"><div class="card border-primary">
+					<div class="card-body text-center ">
+						<div class="text-primary ">
+							<i class="fas fa-box-open fa-3x"></i>
+						</div>
+						<h4>Order History</h4>
+					</div>
+				</div></a>
+			</div>
+			<div th:if="${user.role=='ROLE_USER'}" class="col-4 setting-col">
+				<a class="text-decoration-none" th:href="@{/user/order-history}"><div class="card border-primary">
+					<div class="card-body text-center ">
+						<div class="text-warning ">
+							<i class="fas fa-box-open fa-3x"></i>
+						</div>
+						<h4>My Order</h4>
+						<p>Track your Order</p>
+					</div>
+				</div></a>
+			</div>
+			<div class="col-4 setting-col">
+				<a class="text-decoration-none" th:href="@{'/user/edit-profile/'+${user.name}}"><div class="card border-primary">
+					<div class="card-body text-center ">
+						<div class="text-primary ">
+							<i class="fas fa-edit fa-3x"></i>
+						</div>
+						<h4>Edit Profile</h4>
+					</div>
+				</div></a>
+			</div>
+			<div class="col-4 setting-col">
+				<a class="text-decoration-none" th:href="@{/help-center}"><div class="card border-primary">
+					<div class="card-body text-center ">
+						<div class="text-primary">
+							<i class="fa-solid fa-circle-user fa-3x"></i>
+						</div>
+						<h4>Help Ceter</h4>
+						<p>24*7 Service</p>
+					</div>
+				</div></a>
+			</div>
+			
+		</div>
+	</section>
+
+</body>
+</html>

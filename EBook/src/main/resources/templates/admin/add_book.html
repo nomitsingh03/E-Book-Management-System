@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::Layout(~{::title},~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Add Book</title>
+</head>
+
+<body>
+	<section>
+		<div class="container">
+			<div class="row p-5 justify-content-center">
+						<div th:if="${session.msg}" th:classappend="${session.msg.type}" class="alert text-center"
+							role="alert">
+							<i class="fa-solid me-2" th:classappend="${session.msg.icon}"></i>
+							<p th:text="${session.msg.content}"></p>
+							<th:block th:text="${@sessionHelper.removeSessionMessage()}"></th:block>
+						</div>
+				<div class="col-md-4 justify-content-center">
+					<div class="card rounded-top">
+						<div class="card-header text-center fs-3 ht rounded-top"
+							style="background-color: rgba(77, 240, 99, 0.4);">Sell Old
+							Book</div>
+						<div class="card-body">
+							<form th:action="@{/save_book}" method="post" th:object="${book}" enctype="multipart/form-data">
+
+								<div class="mb-3">
+									<label for="exampleInputPassword1" class="form-label">Book Name</label>
+									<input type="text" class="form-control" id="exampleInputPassword1" th:field="*{bookName}">
+								</div>
+								<div class="mb-3">
+									<label for="exampleInputPassword2" class="form-label">Author's Name</label>
+									<input type="text" class="form-control" id="exampleInputPassword2" th:field="*{author}">
+								</div>
+								<div class="mb-3">
+									<label for="exampleInputPasswor31" class="form-label">Price</label>
+									<input type="number" class="form-control" id="exampleInputPassword31"
+										th:field="*{bookPrice}">
+								</div>
+								<div class="mb-3">
+									<label for="inputState" class="form-label">Book Type</label>
+									<select id="inputState" class="form-select" th:field="*{bookType}">
+										
+										<option selected value="New">New Book</option>
+									</select>
+								</div>
+								<div class="mb-3">
+									<label for="inputState" class="form-label">Book Category</label>
+									<select id="inputState" class="form-select" th:field="*{bookCategory}">
+										<option value="" selected>--Select--</option>
+										<option value="communication">Communication</option>
+										<option value="programming">Programming</option>
+										<option value="ComputerFundamentals">Computer Fundamentals</option>
+									</select>
+								</div>
+								<div class="mb-3">
+									<label for="description" class="form-label">Book Description</label>
+									<textarea id="description" class="form-control" th:field="*{description}"></textarea>
+								</div>
+								<div class="mb-3">
+									<label for="inputState" class="form-label">Book Status</label>
+									<select id="inputState" class="form-select" th:field="*{bookStatus}">
+										<option value="" selected>--Select--</option>
+										<option value="Active">Active</option>
+										<option value="Inactive">Inactive</option>
+									</select>
+								</div>
+								<div class="mb-3">
+									<label for="formFile" class="form-label">Upload Photo</label>
+									<input class="form-control" type="file" id="formFile" name="bookImage">
+								</div>
+								<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+									<button type="submit" class="btn btn-primary btn-md">Add Book</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

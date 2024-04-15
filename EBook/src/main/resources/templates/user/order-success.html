@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::Layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Order Success.</title>
+</head>
+<body>
+	<section  class="text-center align-middle">
+  <div class="container">
+    <h1 class="mt-5">Order Successful!</h1>
+      <div class="tick"><i class="fa-solid fa-circle-check text-success"></i></div>
+    <h3 class="text-primary">Your order has been placed successfully.</h3>
+    <br>
+    <div >
+    <a th:href="@{/}" class="btn btn-primary">Continue Shopping</a>
+    <div th:if="${user.role=='ROLE_ADMIN'}">
+    <a th:href="@{/admin/order-history}" class="btn btn-primary">Go to Orders</a>
+    </div>
+    <div th:if="${user.role=='ROLE_USER'}">
+    <a th:href="@{/user/order-history}" class="btn btn-primary">Go to Orders</a>
+    </div>
+    </div>
+  </div>
+  </section>
+</body>
+</html>

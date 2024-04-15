@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::Layout(~{::title},~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>[[${user.name}]]</title>
+</head>
+
+<body>
+
+	<section>
+		<div class="container-fluid">
+			<div class="row pt-5 justify-content-center">
+				<div th:if="${session.msg}" th:classappend="${session.msg.type}" class="alert text-center" role="alert">
+					<i class="fa-solid me-2" th:classappend="${session.msg.icon}"></i>
+					<p th:text="${session.msg.content}"></p>
+					<th:block th:text="${@sessionHelper.removeSessionMessage()}"></th:block>
+				</div>
+				<div class="col-sm-12 col-md-8 justify-content-center">
+					<div class="card rounded-top">
+						<div class="card-header text-center fs-3 ht rounded-top"
+							style="background-color: rgba(77, 240, 99, 0.4);">Update Profile
+						</div>
+						<div class="card-body">
+							<form th:action="@{/user/update-profile}" method="post">
+								<div class="border border-secondary p-3">
+									<input type="hidden" name="user_id" th:value="*{user.user_id}">
+									<input type="hidden" name="role" th:value="*{user.role}">
+									<input type="hidden" name="passowrd" th:value="*{user.password}">
+									<input type="hidden" name="enable" th:value="*{user.enable}">
+									<div class="mb-3">
+									<label for="name">Name</label>
+									<input type="text" id="name" class="form-control" th:value="*{user.name}" name="name">
+								</div>
+								<div class="mb-3">
+									<label for="name">Email</label>
+									<input type="text" id="name" class="form-control" th:value="*{user.email}" name="email" readonly>
+								</div>
+								<div class="mb-3">
+									<label for="name">Mobile</label>
+									<input type="text" id="name" class="form-control" th:field="*{user.mobileNo}" name="mobileNo">
+								</div>
+								<div class="text-center">
+									<button type="submit" class="btn btn-success" style="width: 60%;">Update</button>
+								</div>
+								</div>
+								</form>
+								<br>
+								<form th:action="@{/user/update-address}" method="post">
+									<input type="hidden" th:value="*{address.add_Id}" name="add_Id">							
+								<div class="border border-secondary p-3">
+									<div class="row mb-3">
+										<div class="col-6">
+											<label for="name">Locality</label>
+										<input type="text" id="name" class="form-control" th:value="*{address.locality}" name="locality">
+									
+										</div>
+									<div class="col-6">
+										<label for="name">Landmark</label>
+										<input type="text" id="name" class="form-control" th:value="*{address.landmark}" name="landmark">
+									</div>
+									</div>
+									<div class="row mb-3">
+										<div class="col-6">
+										<label for="name">City</label>
+										<input type="text" id="name" class="form-control" th:value="*{address.city}" name="city">
+									</div>
+									<div class="col-6">
+										<label for="name">State</label>
+										<input type="text" id="name" class="form-control" th:value="*{address.state}" name="state">
+									</div> </div>
+									<div class="row mb-3">
+										<div class="col-6">
+										<label for="name">District</label>
+										<input type="text" id="name" class="form-control" th:value="*{address.district}" name="district">
+									</div>
+									<div class="col-6">
+										<label for="name">Pincode</label>
+										<input type="text" id="name" class="form-control" th:value="*{address.pincode}" name="pincode">
+									</div>
+								</div>
+						<div class="text-center">
+									<button type="submit" class="btn btn-success" style="width: 60%;">Update</button>
+									</div>
+								</div>
+							</form>
+					</div></div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

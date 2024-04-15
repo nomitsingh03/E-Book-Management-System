@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::Layout(~{::title},~{::section})">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Login</title>
+</head>
+<link rel="stylesheet" th:href="@{css/style.css}" />
+
+<body>
+
+	<section class=" banner vh-100">
+		<div class="mask d-flex align-items-center  gradient-custom-3">
+			<div class="container-fluid vh-90 p-4">
+				<div class="row d-flex justify-content-center align-items-center ">
+					<div class=" col-sm-10 col-md-8 col-lg-5 mt-3">
+						<div class="card p-5 bg-custom3"
+							style="border-radius: 1.2rem; box-shadow:2px 2px 10px rgb(115, 115, 115)">
+							<div class="card-header text-uppercase text-center bg-secondary mb-4 fs-4 ht"
+								style="border-top-left-radius: 1rem; border-top-right-radius: 1rem;">Login</div>
+<th:block th:if="${session.msg}">
+	<p class="text-center text-success">[[${session.msg}]]</p>
+	<th:block th:text="${@sessionHelper.removeSessionMessage()}"></th:block>
+</th:block>
+
+							<th:block th:if="${param.error}">
+								<p class="text-center text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]
+								</p>
+							</th:block>
+							<th:block th:if="${param.logout}">
+								<p class="text-center text-success">Logout Successfully</p>
+							</th:block>
+
+							<div class="card-body pt-1 p-5 fst-italic ht">
+
+								<form th:action="@{/userLogin}" method="post">
+
+									<div class="d-flex flex-row align-items-center mb-4">
+										<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+										<div class="form-outline flex-fill mb-0">
+											<label class="form-label" for="formEmail">Your Email:</label>
+											<input type="email" id="formEmail" class="form-control" name="username"
+												required />
+										</div>
+									</div>
+
+									<div class="d-flex flex-row align-items-center mb-4">
+										<i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+										<div class="form-outline flex-fill mb-0">
+											<label class="form-label" for="formPassword">Password:</label>
+											<input type="password" id="formPassword" class="form-control "
+												name="password" required />
+										</div>
+									</div>
+
+
+									<div class="row mb-4">
+										<div class="col justify-content-center">
+											<!-- Simple link -->
+											<a th:href="@{/forgot-password}" class="text-decoration-none">Forgot password?</a>
+										</div>
+									</div>
+									<button type="submit" class="btn btn-success col-md-12">Login</button>
+
+									<p class="text-center text-muted mt-3 mb-0">Not Registered ? <a th:href="@{/registration}"
+											class="text-decoration-none"> Register here</a></p>
+
+								</form>
+								<hr>
+								<h3 class="text-center">OR</h3>
+								<br>
+								<div class="text-center">
+							<a class="btn btn-danger rounded-pill" th:href="@{/oauth2/authorization/google}"><i class="fa-brands fa-google-plus-g fa-fade"></i> login with google</a>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

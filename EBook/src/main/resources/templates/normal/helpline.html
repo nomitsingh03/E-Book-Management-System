@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::Layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Help center</title>
+</head>
+<body>
+
+<section>
+	<div class="container">
+		<div class="row p-5 d-flex justify-content-center align-items-center">
+			<div class="col-md-4 text-center">
+			<div class="text-primary text-center mb-3">
+				<i class="fa-solid fa-circle-user fa-3x"></i>
+				</div>
+				<h3>24*7 Service</h3>
+				<div class="mt-4 mb-2">
+				<h4><i class="fa-solid fa-phone text-info"></i> Helpline Number: <span class="fs-5">+91 9807540326</span> </h4>
+				
+				<h4><i class="fa-solid fa-envelope text-info"></i> Email : <span class="fs-5">kitaben@gmail.com</span></h4>
+				</div>
+				<a th:href="@{/}" class="btn btn-primary mt-4"> Home </a>
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+</html>

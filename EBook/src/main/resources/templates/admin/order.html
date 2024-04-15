@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::Layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Order History</title>
+</head>
+<body>
+	<section class="text-center mt-3 mb-5">		
+		<div class="text-center text-uppercase"><h3>Order History</h3></div>
+						
+		<div class="table-responsive">
+			<table class="table">
+				<thead class="table-success">
+					<tr class="">
+						<th scope="col">Order-ID</th>
+						<th scope="col">Name</th>
+						<th scope="col">Email</th>
+						<th scope="col">Mobile No.</th>
+						<th scope="col">Book</th>
+						<th scope="col">Address</th>
+						<th scope="col">Payment</th>
+						<th scope="col">Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="order: ${orders}">
+						<th scope="row">OD-[[${order.getOrderId}]]</th>
+						<td th:text="${order.getName}"></td>
+							<td	th:text="${order.getEmail}"></td>
+						<td th:text="${order.getMobile}"></td>
+						<td><p th:each="book: ${order.getBooks}">
+							[[${book.getBookName}]],[[${book.getBookPrice}]]
+							</p>
+						</td>
+						<td th:text="${order.getAddress}"></td>
+						<td th:text="${order.getPayment}"></td>
+						<td th:text="${order.getDate}"></td>
+
+						<!--Modal-->
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation</h1>
+										<button type="button" class="btn-close" data-bs-dismiss="modal"
+											aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										You want to delete this contact !
+									</div>
+									<div class="modal-footer justify-content-center">
+										<a role="button" type="button" class="btn btn-secondary me-4"
+											data-bs-dismiss="modal">Cancel</a>
+										<a th:href="@{/user/delete-contact/}"
+											class="btn btn-danger ms-4">Confirm</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!--Modal-->
+					</tr>
+				</tbody>
+
+
+			</table>
+		</div>
+		<!--pagination-->
+
+		
+	</section>
+
+</body>
+</html>

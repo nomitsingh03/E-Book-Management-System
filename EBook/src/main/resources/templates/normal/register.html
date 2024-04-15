@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::Layout(~{::title},~{::section})}">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Register-E-Book Store</title>
+	<link rel="stylesheet" th:href="@{css/style.css}" />
+</head>
+
+<body>
+	<section class="banner">
+		<div class="container justify-content-center gradient-custom-3" >
+
+			<div class="row pb-5 p-4 ">
+				<div class="col-md-8  offset-md-2 col-sm-12 col-lg-6 offset-lg-3 justify-content-center">
+					<div class="card p-5 mt-4 bg-custom3 "
+						style="border-radius: 1.2rem; box-shadow:1px 1px 3px rgb(234, 234, 234); background: rgb(192, 192, 192);">
+						<div class="card-header text-uppercase bg-secondary text-center fs-4 ht"
+							style="border-top-left-radius: 1rem; border-top-right-radius: 1rem;">Create an account
+						</div>
+
+	<th:block th:if="${session.msg}">
+	<p class="text-center text-success">[[${session.msg}]]</p>
+	<th:block th:text="${@sessionHelper.removeSessionMessage()}"></th:block>
+</th:block>
+						<div class="card-body m-2 fst-italic ht pcustom">
+
+							<form class="" th:action="@{/registration}" method="post"  th:object="${user}" novalidate enctype="multipart/form-data">
+
+								<div class="row mb-3">
+									<div class="form-group">
+										<div class="form-label">
+											<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+											<label class="" for="fullName">Your Name:</label>
+										</div>
+										<input type="text" id="fullName" class="form-control" name="name"
+											 />
+										
+										
+									</div>
+								</div>
+
+								<div class="row mb-3">
+									<div class="form-group">
+										<div class="form-label"><i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+											<label for="formEmail">Your Email:</label>
+										</div>
+										<input type="email" id="formEmail" class="form-control" name="email"  required />
+									
+									</div>
+								</div>
+
+
+								<div class="row mb-2">
+									<div class="form-group ">
+										<div class="form-label">
+											<i class="fas fa-key fa-lg me-3 fa-fw"></i>
+											<label class="form-label" for="formPassword">Password:</label>
+										</div>
+										<input type="password" id="formPassword" class="form-control " name="password" 
+											required />
+										
+									</div>
+								</div>
+
+								<fieldset class="row mb-1">
+
+									<legend class="col-sm-2 col-form-label"><i
+											class="fa-regular fa-circle-check fa-lg fa-fw"></i>
+										<p>Role: </p>
+									</legend>
+									<div class="col-sm-10 row pt-3 ">
+										<div class="form-group col-sm-5 form-check  ">
+											<input class="form-check-input text-dark" type="radio" id="flexCheck1"
+												value="ROLE_ADMIN" name="role" />
+											<label class="form-check-label text-dark" for="flexCheck1">
+												ADMIN
+											</label>
+										</div>
+										<div class="form-group col form-check">
+											<input class="form-check-input text-dark" type="radio" id="flexCheck2"
+												value="ROLE_USER" name="role" />
+											<label class="form-check-label text-dark" for="flexCheck2">
+												USER
+											</label>
+											
+										</div>
+										 
+									</div>
+								</fieldset>
+
+								
+								<div class="row mb-3">
+									<div class="form-group">
+											<label class="form-label" for="image">Select Profile Image :</label>
+									<div class="input-group">
+										<input type="file" class="form-control" name="profileImage" id="image" placeholder="Upload Profile Image">
+											<label class="input-group-text" for="image"><i class="fa-solid fa-upload fa-lg me-2 fa-fw"></i></label>
+									</div>
+									</div>
+								</div>
+
+								<div class="mb-3 text-center">
+									<div class="form-group was-validated">
+										<input name="agreement" class="form-check-input " type="checkbox" id="agreement"
+											 required>
+										<label class="form-check-label" for="agreement">
+											I agree all statements in <a href="#!" class="text-decoration-none">Terms of
+												service</a>
+										</label>
+										<div class="invalid-feedback" > You must agree before submitting. !</div>	
+										<div class="valid-feedback" > You agreed !</div>	
+
+									</div>
+								</div>
+
+
+								<div class="text-center"><button type="submit" class="btn btn-success">Register</button>
+									<button type="reset" class="btn btn-secondary">Reset</button>
+								</div>
+
+								<p class="text-center text-muted mt-3 mb-0">Already Registered ? <a th:href="@{/login}"
+										class="fw-bold text-decoration-none">Go for
+										Login</a></p>
+
+
+							</form>
+							<hr>
+								<h3 class="text-center">OR</h3>
+								<br>
+								<div class="text-center">
+							<a class="btn btn-danger rounded-pill" th:href="@{/oauth2/authorization/google}"><i class="fa-brands fa-google-plus-g fa-fade"></i> login with google</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

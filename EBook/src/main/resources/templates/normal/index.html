@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::Layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<section><h2>
+	<div th:text="${user.role}"></div>
+	<div th:text="*{user.name}"></div>
+	Home page
+</h2></section>
+</body>
+</html>

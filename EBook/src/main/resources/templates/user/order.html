@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::Layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Order History</title>
+</head>
+<body>
+	<section class="text-center mt-3 mb-5">
+		<th:block th:if="${user}==null">
+							<th:redirect url="/login" />
+						</th:block>
+			
+			<div th:if="${session.msg}" th:classappend="${session.msg.type}" class="alert text-center" role="alert">
+			<i class="fa-solid me-2" th:classappend="${session.msg.icon}"></i><p th:text="${session.msg.content}"></p>
+			<th:block th:text="${@sessionHelper.removeSessionMessage()}"></th:block>
+		</div>
+		
+		<div class="text-center text-uppercase"><h3>Order History</h3></div>
+						
+		<div class=" table-responsive">
+			<table class="table align-middle ">
+				<thead class="table-success">
+					<tr class="">
+						<th scope="col">Order-ID</th>
+						<th scope="col">Name</th>
+						<th scope="col">Email</th>
+						<th scope="col">Mobile No.</th>
+						<th scope="col">Book</th>
+						<th scope="col">Address</th>
+						<th scope="col">Payment</th>
+						<th scope="col">Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="order: ${orders}">
+						<th scope="row">OD-[[${order.getOrderId}]]</th>
+						<td th:text="${order.getName}"></td>
+							<td	th:text="${order.getEmail}"></td>
+						<td th:text="${book.getMobile}"></td>
+						<td th:each="book: ${book.getBooks}">
+							[[${book.getBookName}]],[[${book.getBookPrice}]]<br>
+						</td>
+						<td th:text="${book.getAddress}"></td>
+						<td th:text="${book.getPayment}"></td>
+						<td th:text="${book.getDate}"></td>
+					</tr>
+				</tbody>
+
+
+			</table>
+		</div>
+		<!--pagination-->
+
+		
+	</section>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::Layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>All Books</title>
+</head>
+<body>
+	<section class="text-center mt-3 mb-5">
+		<th:block th:if="${user}==null">
+							<th:redirect url="/login" />
+						</th:block>
+			
+			<div th:if="${session.msg}" th:classappend="${session.msg.type}" class="alert text-center" role="alert">
+			<i class="fa-solid me-2" th:classappend="${session.msg.icon}"></i><p th:text="${session.msg.content}"></p>
+			<th:block th:text="${@sessionHelper.removeSessionMessage()}"></th:block>
+		</div>
+		
+		<div class="text-center"><h3>BOOK DETAILS</h3></div>
+						
+		<div class=" table-responsive">
+			<table class="table align-middle ">
+				<thead class="table-success">
+					<tr class="">
+						<th scope="col">Book-ID</th>
+						<th scope="col">Image</th>
+						<th scope="col">Title</th>
+						<th scope="col">Author</th>
+						<th scope="col">Category</th>
+						<th scope="col">Unit-Price</th>
+						<th scope="col">Status</th>
+						<th scope="col">User Email</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="book: ${books}">
+						<th scope="row">BK[[${book.getBook_id}]]</th>
+						<td>
+							<img class="" th:src="@{'/book_img/'+${book.getBookImageName}}" style="width: 2rem; height: 2rem;">
+						</td>
+							<td><a class="text-decoration-none text-black" th:href="@{/user/view-contact}"
+								th:text="${book.getBookName}"></a></td>
+						<td th:text="${book.getAuthor}"></td>
+						<td th:text="${book.getBookCategory}"></td>
+						<td th:text="${book.getBookPrice}"></td>
+						<td th:text="${book.getBookStatus}"></td>
+						<td th:text="${book.getUserEmail}"></td>
+						<td>
+							<a th:href="@{'/update-book-details/'+${book.getBook_id}}"
+								class="btn btn-primary btn-sm">Update</a>
+							<button type="button" class="btn btn-danger" data-bs-toggle="modal"
+								data-bs-target="#exampleModal">Delete</button>
+						</td>
+
+						<!--Modal-->
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation</h1>
+										<button type="button" class="btn-close" data-bs-dismiss="modal"
+											aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										You want to delete this contact !
+									</div>
+									<div class="modal-footer justify-content-center">
+										<a role="button" type="button" class="btn btn-secondary me-4"
+											data-bs-dismiss="modal">Cancel</a>
+										<a th:href="@{/user/delete-contact/}"
+											class="btn btn-danger ms-4">Confirm</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!--Modal-->
+					</tr>
+				</tbody>
+
+
+			</table>
+		</div>
+		<!--pagination-->
+
+		
+	</section>
+
+</body>
+</html>

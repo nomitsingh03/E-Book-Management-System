@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title></title>
+
+</head>
+
+<body>
+
+	<div th:fragment="navbar">
+
+		<!--start navbar-->
+
+
+		<div class="container-fluid bg-success custom-1"></div>
+		<div class="container-fluid p-3 ">
+			<div class="row  ">
+				<div class="col-md-3">
+					<h3 class="fst-italic fw-bold ht text-custom"><i class="fa-solid fa-book-open"></i> E-Books</h3>
+				</div>
+				<div class="col-md-5 ">
+					<form class="d-flex">
+						<input class="form-control me-6 me-4 " type="search" placeholder="Search" aria-label="Search">
+						<button class="btn btn-secondary me-7" type="submit">Search</button>
+					</form>
+				</div>
+
+
+				<div class="col-md-4  pe-5">
+					<div class="d-flex justify-content-end" sec:authorize="isAuthenticated()">
+
+						<a th:href="@{/cart/}" class="btn btn-secondary ht lr ms-2 position-relative"><i
+								class="fa-solid fa-cart-shopping "></i><span th:if="${cartQuantity}"
+								class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+								[[${cartQuantity}]]
+							</span> </a>
+
+						<!--<a href="login.jsp" class="btn btn-success ht lr ms-2"><i class="fa-solid fa-user"></i>
+							</a>-->
+						<!--<a href="logout" class="btn btn-primary ht lr ms-1">Logout <i
+								class="fa-solid fa-right-from-bracket"></i></a>-->
+
+						<div class=" ms-3 pt-2 sel" th:if="${user.role=='ROLE_ADMIN'}"><a href="#"
+								class="badge rounded-pill bg-custom me-1 fs-6 text-decoration-none">Admin</a>
+						</div>
+						<div class="dropdown ms-3 text-md-end">
+							<a href="#" class="fs-2 dropdown-toggle" role="button" data-bs-toggle="dropdown"
+								aria-expanded="false"><i class="fa-solid fa-circle-user text-custom ms-2"></i></a>
+							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start ">
+								<li class="text-center text-uppercase">
+									<i class="fa-solid fa-circle-user text-secondary fs-3"></i><a href="/admin/profile"
+										class="ps-2 text-secondary fw-semibold btn"></a>
+								</li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" th:href="@{'/user/edit-profile/'+${user.name}}"><i
+											class="fa-solid fa-user-pen me-1 text-start"></i>Edit Profile</a></li>
+
+								<li th:if="${user.role=='ROLE_ADMIN'}"><a class="dropdown-item"
+										th:href="@{/all_BookDetails}"><i class="fa-solid fa-book-open me-1"></i>All
+										Books</a></li>
+								<li th:if="${user.role=='ROLE_ADMIN'}"><a class="dropdown-item"
+										th:href="@{/admin/addBook}"><i class="fa-solid fa-square-plus me-1"></i>Add
+										Books</a></li>
+								<li th:if="${user.role=='ROLE_ADMIN'}"><a class="dropdown-item" th:href="@{/admin/order-history}"><i
+											class="fa-solid fa-box-open me-1"></i>Orders</a></li>
+											<li th:if="${user.role=='ROLE_USER'}"><a class="dropdown-item" th:href="@{/user/order-history}"><i
+											class="fa-solid fa-box-open me-1"></i>Orders</a></li>
+								<li><a class="dropdown-item" href="#" th:href="@{/help-center}"><i class="fa-solid fa-circle-info me-1"></i>Help
+										Center</a></li>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li><a class="dropdown-item" th:href="@{/logout}"><i
+											class="fa-solid fa-right-from-bracket me-1"></i>Logout</a></li>
+							</ul>
+						</div>
+					</div>
+
+
+					<div sec:authorize="isAnonymous()">
+
+						<a th:href="@{/login}" class="btn btn-success ht lr ms-2">Login <i
+								class="fa-solid fa-arrow-right"></i></a>
+						<a th:href="@{/registration}" class="btn btn-primary ht lr ms-1"><i
+								class="fa-solid fa-user-plus"></i>
+							Register</a>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-success ">
+			<div class="container-fluid">
+				<a class="navbar-brand ht" href="/"><i class="fa-solid fa-house"></i> Home</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						
+						<li class="nav-item">
+							<a class="nav-link active" th:href="@{/user/all_recentBooks}"><i
+									class="fa-solid fa-book-open-reader"></i>
+								Recent Book</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" th:href="@{/user/all_newBooks}"><i class="fa-solid fa-book"></i>
+								New
+								Book</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" th:href="@{/user/all_oldBooks}"><i
+									class="fa-solid fa-book"></i>
+								Old Book</a>
+						</li>
+
+						<li class="nav-item dropdown dropdown1">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								<i class="fa-solid fa-book"></i>Category
+							</a>
+							<ul class="dropdown-menu ">
+								<li><a class="dropdown-item" th:href="@{/user/books/programming}">ProgrammingAction</a>
+								</li>
+								<li><a class="dropdown-item" th:href="@{/user/books/computer-science}">Computer
+										Science</a>
+								</li>
+								<li><a class="dropdown-item" th:href="@{/user/books/communication}">Communication</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<form class="d-flex ">
+						<th:block th:if="${user}==null">
+							<th:redirect url="/login" />
+						</th:block>
+						<a href="" class="btn btn-light bg-light text-dark ht me-3" type="submit"><i
+								class="fa-solid fa-user"></i> Contact Us </a>
+						<a th:href="@{/setting}" class="btn btn-light bg-light text-dark ht me-3" type="submit">Setting <i
+								class="fa-solid fa-gear"></i></a>
+					</form>
+				</div>
+			</div>
+		</nav>
+
+		<!--End Navbar-->
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::Layout(~{::title},~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Verification</title>
+</head>
+<body>
+<section >
+	<center class="mt-5">
+		<span class="" th:classappend="${msg.type}"><i class="fa fs-2" th:classappend="${msg.icon}"></i></span>
+		<h1>[[${msg.content}]]</h1>
+	</center>
+		
+	</section>
+</body>
+</html>
